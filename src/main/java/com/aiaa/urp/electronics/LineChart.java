@@ -8,10 +8,13 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 import javax.swing.JFrame;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class LineChart extends JFrame {
 
     public DefaultCategoryDataset dataset;
+    private int count = 6;
 
     public LineChart(String applicationTitle, String chartTitle) {
         super(applicationTitle);
@@ -46,5 +49,23 @@ public class LineChart extends JFrame {
         chart.pack( );
         RefineryUtilities.centerFrameOnScreen( chart );
         chart.setVisible( true );
+        chart.setTimer();
+    }
+
+    private void setTimer() {
+        // creating timer task, timer
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                String year = String.valueOf(1970 + 10 * count);
+                count++;
+                dataset.addValue(100, "schools", year);
+
+            }
+        };
+        Timer timer = new Timer();
+
+        // scheduling the task at fixed rate delay
+        timer.scheduleAtFixedRate(task, 500, 1000);
     }
 }
