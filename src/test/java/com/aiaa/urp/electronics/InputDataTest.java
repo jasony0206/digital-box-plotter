@@ -1,3 +1,5 @@
+package com.aiaa.urp.electronics;
+
 import org.junit.Assert;
 import org.junit.Test;
 
