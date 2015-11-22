@@ -11,12 +11,16 @@ import javax.swing.JFrame;
 
 public class LineChart extends JFrame {
 
+    public DefaultCategoryDataset dataset;
+
     public LineChart(String applicationTitle, String chartTitle) {
         super(applicationTitle);
+        dataset = createDataSet();
+
         JFreeChart lineChart = ChartFactory.createLineChart(
                 chartTitle,
                 "Years","Number of Schools",
-                createDataSet(),
+                dataset,
                 PlotOrientation.VERTICAL,
                 true,true,false);
 
