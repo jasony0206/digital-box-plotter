@@ -30,6 +30,7 @@ public class MasterWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent event) {
                 System.out.println("force button pressed!");
+                LineChart.openChartWindow("Force Graph", "Force Graph");
             }
         });
 
@@ -37,6 +38,7 @@ public class MasterWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent event) {
                 System.out.println("pressure button pressed!");
+                LineChart.openChartWindow("Pressure Graph", "Pressure Graph");
             }
         });
 
