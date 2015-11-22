@@ -3,12 +3,13 @@ package com.aiaa.urp.electronics;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
-import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 
-public class LineChart extends ApplicationFrame {
+import javax.swing.JFrame;
+
+public class LineChart extends JFrame {
 
     public LineChart(String applicationTitle, String chartTitle) {
         super(applicationTitle);
