@@ -19,7 +19,7 @@ public class SaveGraphActionListener implements ActionListener {
         this.chart = chart;
     }
 
-    // TODO: Pass in file name so we can save more than just one image
+    // TODO: Use a unique filename for each instance: maybe append an aggregate counter?
     @Override
     public void actionPerformed(ActionEvent e){
         System.out.println("save graph button pressed!");
