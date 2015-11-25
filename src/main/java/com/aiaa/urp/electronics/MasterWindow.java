@@ -22,6 +22,11 @@ public class MasterWindow extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
+        addGraphButtons();
+    }
+
+    // TODO: addButtons feature might be duplicated across many windows. Find a way to extract it out.
+    private void addGraphButtons() {
         // Create buttons for plotting graphs
         JButton forceGraphButton = new JButton("Force");
         JButton pressureGraphButton = new JButton("Pressure");
@@ -45,6 +50,7 @@ public class MasterWindow extends JFrame {
         createLayout(forceGraphButton, pressureGraphButton);
     }
 
+    // TODO: Duplicated over windows.
     private void createLayout(JComponent... arg) {
         // Content pane is an area where child components can be placed
         Container pane = getContentPane();

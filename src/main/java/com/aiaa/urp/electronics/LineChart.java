@@ -7,7 +7,8 @@ import org.jfree.ui.RefineryUtilities;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 
-import javax.swing.JFrame;
+import javax.swing.*;
+import java.awt.Container;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -27,9 +28,18 @@ public class LineChart extends JFrame {
                 PlotOrientation.VERTICAL,
                 true,true,false);
 
-        ChartPanel chartPanel = new ChartPanel( lineChart );
-        chartPanel.setPreferredSize( new java.awt.Dimension( 560 , 367 ) );
-        setContentPane( chartPanel );
+        ChartPanel chartPanel = new ChartPanel(lineChart);
+        chartPanel.setPreferredSize(new java.awt.Dimension(560, 367));
+        setContentPane(chartPanel);
+        addSaveButton(lineChart);
+    }
+
+    public static void openChartWindow(String windowTitle, String chartTitle) {
+        LineChart chart = new LineChart(windowTitle, chartTitle);
+        chart.pack();
+        RefineryUtilities.centerFrameOnScreen(chart);
+        chart.setVisible(true);
+        chart.setTimer();
     }
 
     private DefaultCategoryDataset createDataSet( ) {
@@ -44,16 +54,39 @@ public class LineChart extends JFrame {
         return dataSet;
     }
 
-    public static void openChartWindow(String windowTitle, String chartTitle) {
-        LineChart chart = new LineChart(windowTitle, chartTitle);
-        chart.pack( );
-        RefineryUtilities.centerFrameOnScreen( chart );
-        chart.setVisible( true );
-        chart.setTimer();
+    private void addSaveButton(JFreeChart chart) {
+        // Create buttons for plotting graphs
+        JButton saveGraphButton = new JButton("Save Graph");
+
+        saveGraphButton.addActionListener(new SaveGraphActionListener(chart));
+
+        createLayout(saveGraphButton);
     }
 
+    private void createLayout(JComponent... arg) {
+        // Content pane is an area where child components can be placed
+        Container pane = getContentPane();
+
+        // Child components are organized by a layout manager.
+        // Here, we use a type called GroupLayout manager.
+        GroupLayout layout = new GroupLayout(pane);
+        pane.setLayout(layout);
+
+        // Leave margin between components
+        layout.setAutoCreateContainerGaps(true);
+
+        layout.setHorizontalGroup(layout.createParallelGroup()
+                        .addComponent(arg[0])
+        );
+
+        layout.setVerticalGroup(layout.createSequentialGroup()
+                        .addComponent(arg[0])
+        );
+    }
+
+    // TODO: If timer behavior grows, extract it into a separate class
     private void setTimer() {
-        // creating timer task, timer
+        // Create timer task
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
@@ -63,9 +96,10 @@ public class LineChart extends JFrame {
 
             }
         };
+
         Timer timer = new Timer();
 
-        // scheduling the task at fixed rate delay
+        // Schedule the task at fixed rate delay
         timer.scheduleAtFixedRate(task, 500, 1000);
     }
 }
