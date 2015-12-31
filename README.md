@@ -1,2 +1,2 @@
-# digital-box-plotter
-UCLA AIAA URP Digital box plotter
+# Digital Box Plotter
+UCLA AIAA Rocket Project Digital box plotter
